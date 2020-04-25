@@ -1,0 +1,8 @@
+#Node dependancies
+node_modules/
+
+#JSdoc
+out/
+
+#Enviroment Variables
+.env
