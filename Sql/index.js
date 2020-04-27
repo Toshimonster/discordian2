@@ -247,7 +247,12 @@ class SqlPool {
      * @memberof SqlPool
      */
     constructor (connectionString, ssl=false) {
+        this.debug = require("debug")("SqlPool")
         this.controllers = {}
+        console.log({
+            connectionString: connectionString,
+            ssl: ssl
+        })
         this._pool = new postgres.Pool({
             connectionString: connectionString,
             ssl: ssl
