@@ -13,9 +13,12 @@
     "debug": "^4.1.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "got": "^11.0.2",
+    "moment": "^2.24.0",
     "pg": "^8.0.3"
   },
   "devDependencies": {
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "supports-color": "^7.1.0"
   }
 }

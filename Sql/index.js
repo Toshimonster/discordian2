@@ -18,14 +18,17 @@ class Statement {
      * @memberof Statement
      */
     constructor (pool, query, name, prepare=false) {
-        this._debug = require('debug')(name)
+        this._debug = require('debug')(`sql:${name}`)
         this._perpared = prepare
         this._pool = pool
         this._query = query
         this._name = name
-        this._keyFinder = /(\$[^ ,();\n]+)/g //Finds everything that starts with a $ ending with any sql specific text
+        this._keyFinder = /(\$[^ ,();\n\r]+)/g //Finds everything that starts with a $ ending with any sql specific text
         this._keys = null //Array specifying the index for the key
         this._functionalQuery = null
+
+        this.updateKeys();
+        this.updateFunctionalQuery();
     }
 
     /**
@@ -37,8 +40,8 @@ class Statement {
         if (!this._keys) throw Error("updateFunctionalQuery requires updateKeys to be ran before!")
         
         let tempQuery = this._query
-        Object.keys(this._keys).forEach((key, index) => {
-            tempQuery = tempQuery.replace(`$${key}`, `${index + 1}`)
+        this._keys.forEach((key, index) => {
+            tempQuery = tempQuery.replace(`$${key}`, `$${index + 1}`)
         })
         return this._functionalQuery = tempQuery
     }
@@ -49,7 +52,7 @@ class Statement {
      * @memberof Statement
      */
     updateKeys() {
-        let matched = this._query.match(this._keyFinder)
+        let matched = this._query.match(this._keyFinder) || []
         //Remove initial $ in all matched
         matched.forEach((element, index, array) => {
             array[index] = element.slice(1)
@@ -71,8 +74,8 @@ class Statement {
         }
 
         this._keys.forEach(key => {
-            if (!parameters[key]) throw Error(`Expected key ${key} in parameters`);
-            values.push(parameters[key])
+            if (!parameters[key]) throw Error(`Expected key ${JSON.stringify(key)} in parameters`);
+            config.values.push(parameters[key])
         })
 
         if (this._perpared) config.name = this._name;
@@ -187,6 +190,16 @@ class SqlController {
             values: values,
             name: nameForPrepare
         })
+    }
+
+    /**
+     *Runs a sql string
+     * @param {string} sql
+     * @returns {promise<pg.Result}
+     * @memberof SqlController
+     */
+    executeQuery (sql) {
+        return this._pool.query(sql)
     }
 
     /**

@@ -18,7 +18,6 @@ class Controller {
 
     initializeModule (moduleDirectory, moduleName) {
         return new Promise((resolve, reject) => {
-            console.log()
             if (config.isEnabled(moduleName)) {
                 this.debug(`Initializing ${moduleName}`)
     
@@ -44,6 +43,8 @@ class Controller {
                         resolve(true)
                     })
                     .catch(reject)
+            } else {
+                resolve(false)
             }
         })
     }
@@ -59,7 +60,6 @@ class Controller {
             modules.forEach(module => {
                 promises.push(this.initializeModule(moduleDirectory, module))
             })
-
             Promise.all(promises)
                 .then(resolve)
                 .catch(reject)

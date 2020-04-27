@@ -1,0 +1,37 @@
+{
+	"title": "MONSTER HUNTER: WORLD",
+	"type": "rich",
+	"description": "Welcome to a new world! In Monster Hunter: World, the latest installment in the series, you can enjoy the ultimate hunting experience, using everything at your disposal to hunt monsters in a new world teeming with surprises and excitement.",
+	"url": "http://www.monsterhunterworld.com/",
+	"timestamp": "2020-04-26T22:44:11.817Z",
+	"fields": [
+		{
+			"name": "Metacritic",
+			"value": "[88/100](https://www.metacritic.com/game/pc/monster-hunter-world?ftag=MCD-06-10aaa1f)",
+			"inline": true
+		},
+		{
+			"name": "Price",
+			"value": "£24.99",
+			"inline": true
+		},
+		{
+			"name": "Supports",
+			"value": "Windows, ~~Mac~~, ~~Linux~~",
+			"inline": true
+		},
+		{
+			"name": "Age",
+			"value": "All Ages",
+			"inline": false
+		}
+	],
+	"thumbnail": null,
+	"image": {
+		"url": "https://steamcdn-a.akamaihd.net/steam/apps/582010/header.jpg?t=1587600484"
+	},
+	"author": null,
+	"footer": {
+		"text": "0 People Interested | Last Updated: "
+	}
+}
