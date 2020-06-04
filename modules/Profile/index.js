@@ -324,7 +324,7 @@ function generateEmbed(member, rowData) {
         let lands = getGuidedLands(rowData.maxedguidedlands)
         if (lands.length) {
             mhw += `\n**Maxed Guided Lands: **${lands.join(", ")}`
-        }*/
+        }
         embed.addField("MH:W", mhw)
     }
     return embed
