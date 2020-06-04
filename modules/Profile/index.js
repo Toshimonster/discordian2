@@ -82,6 +82,7 @@ module.exports.exec = (Mod) => {
         )
         if (!msg.guild) {
             msg.channel.send("You must run this command in a guild!")
+            return;
         }
         let member = msg.guild.members.resolve(user)
         if (!member) {
