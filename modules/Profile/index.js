@@ -296,7 +296,7 @@ function generateEmbed(member, rowData) {
     if (accounts) embed.addField("Accounts", accounts);
     if (rowData.huntername) {
         //MH:W
-        let mhw = `The Great team of ${rowData.huntername}`
+        /*let mhw = `The Great team of ${rowData.huntername}`
         if (rowData.paliconame) mhw += ` and ${rowData.paliconame}`;
         if (rowData.mainweapon) mhw += `, wielding the mighty ${rowData.mainweapon},`;
         mhw += ` are creating their legacy to destroy beasts!`
@@ -310,7 +310,21 @@ function generateEmbed(member, rowData) {
         let lands = getGuidedLands(rowData.maxedguidedlands)
         if (lands.length) {
             mhw += `\n**Maxed Guided Lands: **${lands.join(", ")}`
+        }*/
+        let mhw = `Hunter name: ${rowData.huntername}\n`
+        if (rowData.paliconame) mhw += `Palico name: ${rowData.paliconame}\n`;
+        if (rowData.mainweapon) mhw += `Main Weapon: ${rowData.mainweapon}\n`;
+
+        if (rowData.hr) {
+            mhw += `\n**HR: **${rowData.hr}`
+            if (rowData.mr) {
+                mhw += `\t\t\t**MR: **${rowData.mr}`
+            }
         }
+        let lands = getGuidedLands(rowData.maxedguidedlands)
+        if (lands.length) {
+            mhw += `\n**Maxed Guided Lands: **${lands.join(", ")}`
+        }*/
         embed.addField("MH:W", mhw)
     }
     return embed
