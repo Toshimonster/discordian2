@@ -1,14 +1,14 @@
 --Make sure to name the table with {modulename}_{tablename}, to ensure no conflicts.
 
 --Help command
-/*DO $$
+DO $$
 BEGIN
     INSERT INTO help_help (
         moduleName,
         description
     ) VALUES (
-        'Your Module Name',
-        'Your Module Description'
+        'Suggestions',
+        'Modules providing game suggestions'
     ) ON CONFLICT(moduleName) DO NOTHING;
 
     --Help commands
@@ -18,10 +18,10 @@ BEGIN
         syntax,
         moduleName
     ) VALUES (
-        'Your Command Name',
-        'Your Command\'s Description',
-        'Your Command\'s Syntax; params in {}, no prefix needed',
-        'Your Module Name'
+        'Suggest',
+        'Suggest a (steam) game! Makes a embed that people can react to!',
+        'suggest {link}',
+        'Suggestions'
     ) ON CONFLICT(commandName) DO NOTHING;
 exception WHEN others THEN
-END; $$*/
+END; $$

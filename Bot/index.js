@@ -106,9 +106,9 @@ class BotController {
      *Adds a command to be listened in any channel where the bot exists in, including dm's.
      *
      * @param {string} cmd
-     * @param {function(discord.Message)} callback
+     * @param {function(Discord.Message)} callback
      * @param {discord.PermissionResolvable} permissionRequired
-     * @param {function(discord.Message)} [invalidPermCallback]
+     * @param {function(Discord.Message)} [invalidPermCallback]
      * @memberof BotController
      */
     addCommand(cmd, callback, permissionsRequired = false, invalidPermCallback = this.invalidPerm, errorCallback = this.errorCallback, allowBot = false) {

@@ -1,14 +1,21 @@
 --Make sure to name the table with {modulename}_{tablename}, to ensure no conflicts.
 CREATE TABLE IF NOT EXISTS profile_profiles (
+    userId VARCHAR(18) PRIMARY KEY,
+    tagLine VARCHAR(100),
+    description VARCHAR(500),
+    xp INT DEFAULT 0,
+
     --Games
     nintendoswitch VARCHAR(17),
-    battlenet VARCHAR(25),
-    origin VARCHAR(25),
-    steam VARCHAR(25),
-    uplay VARCHAR(25),
+    battlenet VARCHAR(50),
+    origin VARCHAR(50),
+    steam VARCHAR(50),
+    uplay VARCHAR(50),
+    epic VARCHAR(50),
+    bethesda VARCHAR(50),
+    riot VARCHAR(50),
 
-    --Non-MH
-    userId VARCHAR(18) PRIMARY KEY,
+    --MH
     hunterName VARCHAR(100),
     palicoName VARCHAR(100),
     /*
@@ -64,6 +71,24 @@ BEGIN
         'Profile',
         'Shows your profile',
         'profile',
+        'Profile'
+    ),
+    (
+        'NewProfile',
+        'Creates your profile',
+        'newprofile',
+        'Profile'
+    ),
+    (
+        'SetProfile',
+        'Sets a parameter for your profile. Run command with no parameters for a list of them',
+        'setprofile {parameter} {...value}',
+        'Profile'
+    ),
+    (
+        'GetAccounts',
+        'Finds all users accounts for the specified platform',
+        'getaccounts {platform}',
         'Profile'
     ) ON CONFLICT(commandName) DO NOTHING;
 exception WHEN others THEN

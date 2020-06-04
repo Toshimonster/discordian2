@@ -16,18 +16,28 @@ module.exports.exec = (Mod) => {
   Controller.debug => debug command
   */
 
-  Mod.Bot.addCommand('makeembed', (msg) => {
+  Mod.Bot.addCommand('suggest', (msg) => {
     /* msg now has
       .tempSend
       .tempReply
     */
+    msg.delete()
     let id = appIdFromLink(msg.arguments[0])
     if (id) {
       embedFromId(id)
         .then( embed => {
           msg.channel.send(embed)
+              .then(msg => {
+                msg.react("♥")
+              })
         })
+          .catch(err => {
+            msg.channel.tempSend(`\`${err.message}\`\nMake sure its a valid link!`)
+          })
+    } else {
+      msg.channel.tempSend("You have to have a valid link!")
     }
+
 
 
     //Stuff
@@ -70,7 +80,8 @@ module.exports.exec = (Mod) => {
               value: (data.required_age) ? `${data.required_age}+`:"All Ages"
             }])
             embed.setImage(data.header_image)
-              .setFooter(`${numInterested} People Interested | Last Updated: `)
+            //  .setFooter(`${numInterested} People Interested | Last Updated: `)
+                .setFooter("Check ♥ reaction for People Interested | Updated: ")
             
             resolve(embed)  
 

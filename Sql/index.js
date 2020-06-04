@@ -74,7 +74,7 @@ class Statement {
         }
 
         this._keys.forEach(key => {
-            if (!parameters[key]) throw Error(`Expected key ${JSON.stringify(key)} in parameters`);
+            if (parameters[key] === undefined) throw Error(`Expected key ${JSON.stringify(key)} in parameters`);
             config.values.push(parameters[key])
         })
 
